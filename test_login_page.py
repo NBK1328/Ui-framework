@@ -11,8 +11,6 @@ def test_guest_be_on_the_login_page(browser):
     page = LoginPage(browser, link)
     page.open()
     
-    page.should_be_login_form()
-    page.should_be_login_url()
-    page.should_be_register_form()
+    page.should_be_login_page
     
     
