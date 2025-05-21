@@ -8,8 +8,8 @@ def pytest_addoption(parser):
     parser.addoption(
         "--language",
         action="store",
-        default="en",  # Принудительно испанский по умолчанию
-        help="Set browser language (forced to 'es' if not specified)",
+        default="en",  
+        help="Set browser language (forced to 'en' if not specified)",
     )
 
 @pytest.fixture(scope="function")
