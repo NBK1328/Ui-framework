@@ -3,6 +3,13 @@ from selenium.webdriver.common.by import By
 import pytest
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import TimeoutException
+from .locators import BasePageLocators
+from .locators import LoginPageLocators
+
 import math
 
 class BasePage():
@@ -24,6 +31,26 @@ class BasePage():
         return True
     
 
+    
+    def is_not_element_present(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout).until(EC.presence_of_all_elements_located((how, what)))
+        except TimeoutException:
+            return True
+        return False
+    
+    # Проверка, что какой-то элемент исчезает. Следует воспользоваться явным ожиданием вместе с функцией until_not, 
+    # в зависимости от того, какой результат мы ожидаем
+    def is_disappeared(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout, 1, TimeoutException).until_not(EC.presence_of_element_located((how, what)))
+        except:
+            return False
+        
+        return True
+    
+    
+    
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert
         x = alert.text.split(" ")[2]
@@ -37,7 +64,18 @@ class BasePage():
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
-    
+
+    def go_to_login_page(self):
+        login_link = self.browser.find_element(By. CSS_SELECTOR, "#login_link")
+        login_link.click()
+
+    def should_be_login_link(self):
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
+
+    def should_be_login_page(self):
+        form_email_login = self.browser.find_element(*LoginPageLocators.BUTTON_LOGIN)
+        form_email_register = self.browser.find_element(*LoginPageLocators.BUTTON_REGISTRATION)
+        assert form_email_login and form_email_register, "This is not a login page, there are no required elements"
 
 
 

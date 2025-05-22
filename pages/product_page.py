@@ -33,6 +33,13 @@ class ProductPage(BasePage):
         expected_price = element_expected_price.text
         assert actual_price == expected_price, "Actual price does not match the expected price"
 
+    # Проверка отсутствия какого либо элемента.
+    def should_not_be_succes_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.message_name_product), "Success message is presented, but should not be"
+
+    def element_should_become_hidden(self):
+        assert self.is_disappeared(*ProductPageLocators.message_name_product), "Element should have disappeared, but it's still visible"
+
     
 
 
