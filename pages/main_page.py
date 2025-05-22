@@ -15,11 +15,8 @@ class MainPage(BasePage):
         
         # alert = self.browser.switch_to.alert  #Это пример, что можно добавить обработку аллертов.
         # alert.accept()
-        
-        
-        #return LoginPage(browser=self.browser, url=self.browser.current_url) 
 
-    
+        #return LoginPage(browser=self.browser, url=self.browser.current_url) 
 
 
     def should_be_login_link(self):
