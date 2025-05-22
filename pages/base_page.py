@@ -77,5 +77,8 @@ class BasePage():
         form_email_register = self.browser.find_element(*LoginPageLocators.BUTTON_REGISTRATION)
         assert form_email_login and form_email_register, "This is not a login page, there are no required elements"
 
+    def go_to_basket_page(self):
+        button_go_to_basket_page = self.browser.find_element(*BasePageLocators.BASKET_LINK_BUTTON)
+        button_go_to_basket_page.click()
 
 

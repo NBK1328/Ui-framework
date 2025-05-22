@@ -2,9 +2,11 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import pytest
 from .base_page import BasePage
-from .locators import MainPageLocators
 from .locators import LoginPageLocators
 from .login_page import LoginPage
+from .locators import BasePageLocators
+
+
 
 
 class MainPage(BasePage):
@@ -15,8 +17,13 @@ class MainPage(BasePage):
         
         # alert = self.browser.switch_to.alert  #Это пример, что можно добавить обработку аллертов.
         # alert.accept()
-
         #return LoginPage(browser=self.browser, url=self.browser.current_url) 
+    
+    
+        
+        
+
+
 
 
     
