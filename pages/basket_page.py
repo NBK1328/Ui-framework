@@ -6,9 +6,6 @@ from .locators import BasePageLocators
 from .locators import BasketPageLocators
 
 
-
-
-
 class BasketPage(BasePage):
 
     def checking_an_empty_cart(self):
